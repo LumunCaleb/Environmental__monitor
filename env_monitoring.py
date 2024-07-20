@@ -34,12 +34,12 @@ st.markdown(
         color: white;  /* White text color on button */
     }
     .css-1n7v3w8 input { /* Input fields */
-        color: black;  /* Black text color in input fields */
-        background-color: white;  /* White background for input fields */
+        color: white;  /* White text color in input fields */
+        background-color: gray;  /* Gray background for input fields */
     }
     .css-1v3h5q2 { /* Text Input */
-        color: black;  /* Black text color in text input fields */
-        background-color: white;  /* White background for text input fields */
+        color: white;  /* White text color in text input fields */
+        background-color: gray;  /* Gray background for text input fields */
     }
     .watermark {
         position: fixed;
@@ -57,7 +57,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.title("Environmental Monitoring App")
+st.title("Environmental Monitoring Model :monitor:")
 
 st.write("Enter feature values for prediction:")
 
@@ -115,5 +115,4 @@ with col2:
     st.write("**U**: Unsafe")
     st.write("**M**: Moderately safe")
     st.write("**S**: Safe")
-
 
