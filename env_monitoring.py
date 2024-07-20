@@ -57,7 +57,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.title("Environmental Monitoring Model :monitor:")
+st.title("Environmental Monitoring App")
 
 st.write("Enter feature values for prediction:")
 
@@ -112,7 +112,5 @@ with col1:
 
 with col2:
     st.write("### Prediction Legend")
-    st.write("**U**: Unsafe")
-    st.write("**M**: Moderately safe")
-    st.write("**S**: Safe")
+    st.write("**U**: Unsafe",    "**M**: Moderately safe",    "**S**: Safe")
 
