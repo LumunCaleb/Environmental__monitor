@@ -107,7 +107,7 @@ if st.button('Predict'):
     st.session_state.previous_predictions = pd.concat([st.session_state.previous_predictions, new_prediction], ignore_index=True)
 
 # Display previous predictions and the legend side by side
-col1, col2 = st.columns([3,2])
+col1, col2 = st.columns([4,2])
 
 with col1:
     st.write("Previous Predictions")
