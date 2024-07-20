@@ -4,14 +4,14 @@ import pandas as pd
 import joblib
 
 # Define the paths to your joblib files
-joblib_file_path = r'C:\Users\CALEB\knnmainnew_model.joblib'
-label_encoder_path = r'C:\Users\CALEB\encoder.joblib'
-scaler_path = r'C:\Users\CALEB\scaler.joblib'
+model_file_path = 'knnmainnew_model.joblib'
+encoder_file_path = 'encoder.joblib'
+scaler_file_path = 'scaler.joblib'
 
 # Load the model, label encoder, and scaler using joblib
 model = joblib.load(joblib_file_path)
-label_encoder = joblib.load(label_encoder_path)
-scaler = joblib.load(scaler_path)
+label_encoder = joblib.load(encoder_file_path)
+scaler = joblib.load(scaler_file_path)
 
 st.title("Environmental Monitoring Model:monitor:")
 
