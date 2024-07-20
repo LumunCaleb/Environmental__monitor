@@ -41,6 +41,9 @@ st.markdown(
         color: white;  /* White text color in text input fields */
         background-color: gray;  /* Gray background for text input fields */
     }
+    .css-10trblm { /* Title */
+        color: white;  /* White text color for the title */
+    }
     .watermark {
         position: fixed;
         bottom: 10px;
@@ -112,5 +115,6 @@ with col1:
 
 with col2:
     st.write("### Prediction Legend")
-    st.write("**U**: Unsafe\t",    "**M**: Moderately safe\t",    "**S**: Safe")
-
+    st.write("**U**: Unsafe")
+    st.write("**M**: Moderately safe")
+    st.write("**S**: Safe")
