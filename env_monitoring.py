@@ -110,9 +110,9 @@ if st.button('Predict'):
 col1, col2 = st.columns([4,2])
 
 with col1:
-    st.write("Previous Predictions")
+    st.write("**Previous Predictions**")
     st.dataframe(st.session_state.previous_predictions)
 
 with col2:
-    st.write("Prediction Legend")
-    st.write("**U**: Unsafe    ", "**M**: Moderately safe    ", "**S**: Safe")
+    st.write("**Prediction Legend**")
+    st.write("**U**: Unsafe ", "**M**: Moderately safe ", "**S**: Safe")
