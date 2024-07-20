@@ -22,20 +22,20 @@ st.markdown(
     """
     <style>
     .main {
-        background-color: #d0f0c0;  /* Light green background */
+          background-color: #004d00;  /* Dark green background */
     }
     .css-18e3th9 {
-        background-color: #006400;  /* Dark green for header */
+        background-color: #003300;  /* Even darker green for header */
     }
     .css-1j7a9z2 {
-        background-color: #00ff00;  /* Bright green for button */
+        background-color: #009900;  /* Bright green for button */
     }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-st.title("Environmental Monitoring Model:monitor:")
+st.title("Environmental Monitoring Model")
 
 st.write("Enter feature values for prediction:")
 
