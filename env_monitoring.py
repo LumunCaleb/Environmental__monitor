@@ -18,7 +18,6 @@ st.title("Environmental Monitoring Model :monitor:")
 st.write("Enter feature values for prediction:")
 
 # Input fields
-Prev_Status = st.text_input('Previous_Status', value='M', disabled=True)
 Week = st.number_input('Week', value=0.0)
 Temperature = st.number_input('Temperature', value=0.0)
 Humidity = st.number_input('Humidity', value=0.0)
@@ -28,7 +27,7 @@ GasLevel = st.number_input('GasLevel', value=0.0)
 input_data = pd.DataFrame([[Week, Temperature, Humidity, GasLevel]], columns=['Week', 'Temp', 'Hum', 'Gas'])
 
 if st.button('Predict'):
-    # Scale input data
+    # Transform the input data
     input_data_scaled = scaler.transform(input_data)
     
     # Perform prediction
