@@ -23,7 +23,6 @@ Temperature = st.number_input('Temperature', value=0.0)
 Humidity = st.number_input('Humidity', value=0.0)
 GasLevel = st.number_input('GasLevel', value=0.0)
 
-# Automatically update Previous_Status with the result of a prediction
 # Create a DataFrame for input features
 cols = ['Week', 'Prev_Status', 'Temp', 'Hum', 'Gas']
 input_data = pd.DataFrame(columns=cols)
@@ -51,6 +50,9 @@ if st.button('Predict'):
     # Display the result
     st.write(f'Prediction: {prediction[0]}')
 
-    # Update 'Prev_Status' with the prediction result
-    prev_status_result = prediction[0]  # Adjust if necessary
-    st.write(f'Updated Previous Status: {prev_status_result}')
+    # Update 'Previous_Status' with the prediction result
+    st.write(f'Updated Previous Status: {prediction[0]}')
+    
+    # Show the 'Previous_Status' as read-only text
+    st.text(f'Previous_Status: {prediction[0]}')
+
