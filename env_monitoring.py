@@ -13,7 +13,7 @@ model = joblib.load(model_file_path)
 label_encoder = joblib.load(label_encoder_path)
 scaler = joblib.load(scaler_path)
 
-st.title("Environmental Monitoring Model:monitor:")
+st.title("Environmental Monitoring Model :monitor:")
 
 st.write("Enter feature values for prediction:")
 
@@ -26,7 +26,6 @@ GasLevel = st.number_input('GasLevel', value=0.0)
 # Create a DataFrame for input features
 input_data = pd.DataFrame([[Week, Temperature, Humidity, GasLevel]], columns=['Week', 'Temp', 'Hum', 'Gas'])
 
-# Perform prediction to get the 'Prev_Status'
 if st.button('Predict'):
     # Scale input data
     input_data_scaled = scaler.transform(input_data)
@@ -36,17 +35,19 @@ if st.button('Predict'):
     
     # Convert the numeric prediction to the corresponding label
     try:
-        # Update Previous_Status with the predicted value
         previous_status = label_encoder.inverse_transform([prediction[0]])[0]
     except ValueError:
         # Handle the case where the prediction might be out of bounds
         previous_status = 'unknown'
     
-    # Include 'Prev_Status' in the DataFrame for display purposes
-    input_data_with_status = pd.DataFrame([[Week, previous_status, Temperature, Humidity, GasLevel]],
-                                          columns=['Week', 'Prev_Status', 'Temp', 'Hum', 'Gas'])
-
+    # Display the result
     st.write(f'Prediction: {previous_status}')
     
-    # Display the result in a non-editable format
+    # Show the predicted Previous_Status as a non-editable field
     st.write(f'Previous Status (Predicted): {previous_status}')
+    
+    # Optionally, display the full input data with predicted status for verification
+    st.write("Input Data with Predicted Status:")
+    input_data_with_status = pd.DataFrame([[Week, previous_status, Temperature, Humidity, GasLevel]],
+                                          columns=['Week', 'Prev_Status', 'Temp', 'Hum', 'Gas'])
+    st.write(input_data_with_status)
