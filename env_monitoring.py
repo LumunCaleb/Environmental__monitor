@@ -18,6 +18,7 @@ st.title("Environmental Monitoring Model :monitor:")
 st.write("Enter feature values for prediction:")
 
 # Input fields
+Prev_Status = st.text_input('Previous_Status', value='M', disabled=True)
 Week = st.number_input('Week', value=0.0)
 Temperature = st.number_input('Temperature', value=0.0)
 Humidity = st.number_input('Humidity', value=0.0)
@@ -35,19 +36,19 @@ if st.button('Predict'):
     
     # Convert the numeric prediction to the corresponding label
     try:
-        previous_status = label_encoder.inverse_transform([prediction[0]])[0]
+        prev_status = label_encoder.inverse_transform([prediction[0]])[0]
     except ValueError:
         # Handle the case where the prediction might be out of bounds
-        previous_status = 'unknown'
+        prev_status = 'unknown'
     
     # Display the result
-    st.write(f'Prediction: {previous_status}')
+    st.write(f'Prediction: {prev_status}')
     
-    # Show the predicted Previous_Status as a non-editable field
-    st.write(f'Previous Status (Predicted): {previous_status}')
-    
+    # Update the non-editable Previous_Status field
+    st.text_input('Previous_Status', value=prev_status, disabled=True)
+
     # Optionally, display the full input data with predicted status for verification
     st.write("Input Data with Predicted Status:")
-    input_data_with_status = pd.DataFrame([[Week, previous_status, Temperature, Humidity, GasLevel]],
+    input_data_with_status = pd.DataFrame([[Week, prev_status, Temperature, Humidity, GasLevel]],
                                           columns=['Week', 'Prev_Status', 'Temp', 'Hum', 'Gas'])
     st.write(input_data_with_status)
