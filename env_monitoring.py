@@ -22,15 +22,15 @@ st.markdown(
     """
     <style>
     .main {
-        background-color: #004d00;  /* Dark green background */
-        color: white;  /* White text color */
+        background-color: #e8f5e9;  /* Classic light green background */
+        color: black;  /* Black text color */
     }
     .css-18e3th9 { /* Header */
-        background-color: #003300;  /* Even darker green for header */
-        color: white;  /* White text color */
+        background-color: #c8e6c9;  /* Slightly darker green for header */
+        color: black;  /* Black text color */
     }
     .css-1j7a9z2 { /* Button */
-        background-color: #009900;  /* Bright green for button */
+        background-color: #4caf50;  /* Classic green for button */
         color: white;  /* White text color on button */
     }
     .css-1n7v3w8 { /* Input fields */
@@ -57,7 +57,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.title("Environmental Monitoring App")
+st.title("Environmental Monitoring Model:monitor:")
 
 st.write("Enter feature values for prediction:")
 
