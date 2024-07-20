@@ -22,7 +22,7 @@ st.title("Environmental Monitoring Model:monitor:")
 st.write("Enter feature values for prediction:")
 
 # Input fields
-Week = st.number_input('Week', value=)
+Week = st.number_input('Week', value=1)
 Temperature = st.number_input('Temperature', value=0.0)
 Humidity = st.number_input('Humidity', value=0.0)
 GasLevel = st.number_input('GasLevel', value=0.0)
