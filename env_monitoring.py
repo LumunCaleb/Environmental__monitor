@@ -17,7 +17,7 @@ except FileNotFoundError as e:
     st.error(f"Error: {e}")
     st.stop()
 
-st.title("Environmental Monitoring Model:monitor:")
+st.title("Environmental Monitoring Model:")
 
 st.write("Enter feature values for prediction:")
 
