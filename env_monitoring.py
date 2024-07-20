@@ -9,9 +9,13 @@ encoder_file_path = 'encoder.joblib'
 scaler_file_path = 'scaler.joblib'
 
 # Load the model, label encoder, and scaler using joblib
-model = joblib.load(joblib_file_path)
-label_encoder = joblib.load(encoder_file_path)
-scaler = joblib.load(scaler_file_path)
+try:
+    model = joblib.load(model_file_path)
+    label_encoder = joblib.load(encoder_file_path)
+    scaler = joblib.load(scaler_file_path)
+except FileNotFoundError as e:
+    st.error(f"Error: {e}")
+    st.stop()
 
 st.title("Environmental Monitoring Model:monitor:")
 
@@ -32,8 +36,8 @@ input_data = pd.DataFrame([[Week, Previous_Status, Temperature, Humidity, GasLev
 try:
     input_data['Prev_Status'] = label_encoder.transform(input_data[['Prev. Status']])
 except ValueError:
-    # Assign a default value if category is unknown
-    input_data['Prev_Status'] = label_encoder.transform([['unknown']])[0]
+    st.error("Unknown category in 'Previous_Status'. Please use a known category.")
+    st.stop()
 
 # Select the required features and scale them
 input_data = input_data[['Week', 'Prev_Status', 'Temp', 'Hum', 'Gas']]
@@ -42,17 +46,3 @@ input_data_scaled = scaler.transform(input_data)
 if st.button('Predict'):
     prediction = model.predict(input_data_scaled)
     st.write(f'Prediction: {prediction[0]}')
-
-
-
-
-# def predict(): 
-#     row = np.array([passengerid,pclass,name,sex,age,sibsp,parch,ticket,fare,cabin,embarked]) 
-#     X = pd.DataFrame([row], columns = columns)
-#     prediction = model.predict(X)
-#     # if prediction[0] == 1: 
-#     #     st.success('Passenger Survived :thumbsup:')
-#     # else: 
-#     #     st.error('Passenger did not Survive :thumbsdown:') 
-
-#trigger = st.button('Predict', on_click=predict)
