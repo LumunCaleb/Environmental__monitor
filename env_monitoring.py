@@ -115,4 +115,4 @@ with col1:
 
 with col2:
     st.write("Prediction Legend")
-    st.write("**U**: Unsafe", "**M**: Moderately safe", "**S**: Safe")
+    st.write("**U**: Unsafe    ", "**M**: Moderately safe    ", "**S**: Safe")
