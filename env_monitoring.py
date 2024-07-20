@@ -13,9 +13,9 @@ model = joblib.load(model_file_path)
 label_encoder = joblib.load(encoder_file_path)
 scaler = joblib.load(scaler_file_path)
 
-# Initialize Streamlit session state variables
-if 'previous_prediction' not in st.session_state:
-    st.session_state.previous_prediction = 'M'  # Default value
+# Initialize a DataFrame to store previous predictions
+if 'previous_predictions' not in st.session_state:
+    st.session_state.previous_predictions = pd.DataFrame(columns=['Week', 'Temperature', 'Humidity', 'GasLevel', 'Predicted Status'])
 
 st.title("Environmental Monitoring Model:monitor:")
 
@@ -27,10 +27,9 @@ Temperature = st.number_input('Temperature', value=0.0)
 Humidity = st.number_input('Humidity', value=0.0)
 GasLevel = st.number_input('GasLevel', value=0.0)
 
-# Automatically update Previous_Status with the result of a prediction
 # Create a DataFrame for input features
 cols = ['Week', 'Prev_Status', 'Temp', 'Hum', 'Gas']
-input_data = pd.DataFrame([[Week, st.session_state.previous_prediction, Temperature, Humidity, GasLevel]], columns=cols)
+input_data = pd.DataFrame([[Week, 'M', Temperature, Humidity, GasLevel]], columns=cols)
 
 # Transform 'Prev_Status' using the label encoder
 try:
@@ -48,12 +47,20 @@ input_data_scaled = scaler.transform(input_data)
 if st.button('Predict'):
     # Perform prediction
     prediction = model.predict(input_data_scaled)
-    
-    # Update session state with the latest prediction
-    st.session_state.previous_prediction = prediction[0]
+    predicted_status = prediction[0]
     
     # Display the result
-    st.write(f'Prediction: {prediction[0]}')
+    st.write(f'Prediction: {predicted_status}')
+    
+    # Update 'Prev_Status' with the prediction result
+    st.session_state.previous_predictions = st.session_state.previous_predictions.append({
+        'Week': Week,
+        'Temperature': Temperature,
+        'Humidity': Humidity,
+        'GasLevel': GasLevel,
+        'Predicted Status': predicted_status
+    }, ignore_index=True)
 
-    # Update 'Previous_Status' with the prediction result
-    st.write(f'Updated Previous Status: {st.session_state.previous_prediction}')
+# Display previous predictions
+st.write("Previous Predictions:")
+st.dataframe(st.session_state.previous_predictions)
