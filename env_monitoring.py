@@ -26,23 +26,25 @@ GasLevel = st.number_input('GasLevel', value=0.0)
 # Create a DataFrame for input features
 input_data = pd.DataFrame([[Week, Temperature, Humidity, GasLevel]], columns=['Week', 'Temp', 'Hum', 'Gas'])
 
-# Transform the input data for scaling
-input_data_scaled = scaler.transform(input_data)
-
+# Perform prediction to get the 'Prev_Status'
 if st.button('Predict'):
-    prediction = model.predict(input_data_scaled)
-    # Assume the prediction is used to update Previous_Status
-    previous_status = prediction[0]
+    # Scale input data
+    input_data_scaled = scaler.transform(input_data)
     
-    # Transform 'Previous_Status' using the label encoder
+    # Perform prediction
+    prediction = model.predict(input_data_scaled)
+    
+    # Convert the numeric prediction to the corresponding label
     try:
-        # Update input_data with the predicted Previous_Status
-        input_data_with_status = pd.DataFrame([[Week, previous_status, Temperature, Humidity, GasLevel]],
-                                              columns=['Week', 'Prev_Status', 'Temp', 'Hum', 'Gas'])
+        # Update Previous_Status with the predicted value
+        previous_status = label_encoder.inverse_transform([prediction[0]])[0]
     except ValueError:
-        # Assign a default value if category is unknown
-        input_data_with_status = pd.DataFrame([[Week, 'unknown', Temperature, Humidity, GasLevel]],
-                                              columns=['Week', 'Prev_Status', 'Temp', 'Hum', 'Gas'])
+        # Handle the case where the prediction might be out of bounds
+        previous_status = 'unknown'
+    
+    # Include 'Prev_Status' in the DataFrame for display purposes
+    input_data_with_status = pd.DataFrame([[Week, previous_status, Temperature, Humidity, GasLevel]],
+                                          columns=['Week', 'Prev_Status', 'Temp', 'Hum', 'Gas'])
 
     st.write(f'Prediction: {previous_status}')
     
