@@ -58,5 +58,3 @@ if st.button('Predict'):
     # Show the 'Previous_Status' as read-only text
     st.write(f'Updated Previous Status: {st.session_state.previous_status}')
     st.text(f'Previous_Status: {st.session_state.previous_status}')
-
-
