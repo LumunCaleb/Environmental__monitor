@@ -25,12 +25,17 @@ st.markdown(
         background-color: #004d00;  /* Dark green background */
         color: white;  /* White text color */
     }
-    .css-18e3th9 {
+    .css-18e3th9 { /* Header */
         background-color: #003300;  /* Even darker green for header */
         color: white;  /* White text color */
     }
-    .css-1j7a9z2 {
+    .css-1j7a9z2 { /* Button */
         background-color: #009900;  /* Bright green for button */
+        color: white;  /* White text color on button */
+    }
+    .css-1n7v3w8 { /* Input fields */
+        color: white;  /* White text color in input fields */
+        background-color: #003300;  /* Dark green background for input fields */
     }
     .watermark {
         position: fixed;
