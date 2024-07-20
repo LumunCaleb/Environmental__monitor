@@ -33,7 +33,7 @@ st.markdown(
         background-color: #006400;  /* Dark green for button */
         color: white;  /* White text color on button */
     }
-    .css-1n7v3w8 { /* Input fields */
+    .css-1n7v3w8 input { /* Input fields */
         color: black;  /* Black text color in input fields */
         background-color: white;  /* White background for input fields */
     }
@@ -57,7 +57,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.title("Environmental Monitoring Model :monitor:")
+st.title("Environmental Monitoring App")
 
 st.write("Enter feature values for prediction:")
 
