@@ -5,15 +5,15 @@ import joblib
 
 # Define the paths to your joblib files
 model_file_path = 'knnmainnew_model.joblib'
-label_encoder_path = 'encoder.joblib'
-scaler_path = 'scaler.joblib'
+encoder_file_path = 'encoder.joblib'
+scaler_file_path = 'scaler.joblib'
 
 # Load the model, label encoder, and scaler using joblib
 model = joblib.load(model_file_path)
-label_encoder = joblib.load(label_encoder_path)
-scaler = joblib.load(scaler_path)
+label_encoder = joblib.load(encoder_file_path)
+scaler = joblib.load(scaler_file_path)
 
-st.title("Environmental Monitoring Model :monitor:")
+st.title("Environmental Monitoring Model:monitor:")
 
 st.write("Enter feature values for prediction:")
 
@@ -23,31 +23,34 @@ Temperature = st.number_input('Temperature', value=0.0)
 Humidity = st.number_input('Humidity', value=0.0)
 GasLevel = st.number_input('GasLevel', value=0.0)
 
+# Automatically update Previous_Status with the result of a prediction
 # Create a DataFrame for input features
-input_data = pd.DataFrame([[Week, Temperature, Humidity, GasLevel]], columns=['Week', 'Temp', 'Hum', 'Gas'])
+cols = ['Week', 'Prev_Status', 'Temp', 'Hum', 'Gas']
+input_data = pd.DataFrame(columns=cols)
+
+# Initially fill with default values
+input_data = pd.DataFrame([[Week, 'M', Temperature, Humidity, GasLevel]], columns=cols)
+
+# Transform 'Prev_Status' using the label encoder
+try:
+    input_data['Prev_Status'] = label_encoder.transform(input_data[['Prev_Status']])
+except ValueError:
+    # Assign a default value if category is unknown
+    input_data['Prev_Status'] = label_encoder.transform([['M']])[0]
+
+# Ensure the order of columns matches the trained scaler's expectations
+input_data = input_data[['Week', 'Prev_Status', 'Temp', 'Hum', 'Gas']]
+
+# Scale the features
+input_data_scaled = scaler.transform(input_data)
 
 if st.button('Predict'):
-    # Transform the input data
-    input_data_scaled = scaler.transform(input_data)
-    
     # Perform prediction
     prediction = model.predict(input_data_scaled)
     
-    # Convert the numeric prediction to the corresponding label
-    try:
-        prev_status = label_encoder.inverse_transform([prediction[0]])[0]
-    except ValueError:
-        # Handle the case where the prediction might be out of bounds
-        prev_status = 'unknown'
-    
     # Display the result
-    st.write(f'Prediction: {prev_status}')
-    
-    # Update the non-editable Previous_Status field
-    st.text_input('Previous_Status', value=prev_status, disabled=True)
+    st.write(f'Prediction: {prediction[0]}')
 
-    # Optionally, display the full input data with predicted status for verification
-    st.write("Input Data with Predicted Status:")
-    input_data_with_status = pd.DataFrame([[Week, prev_status, Temperature, Humidity, GasLevel]],
-                                          columns=['Week', 'Prev_Status', 'Temp', 'Hum', 'Gas'])
-    st.write(input_data_with_status)
+    # Update 'Prev_Status' with the prediction result
+    prev_status_result = prediction[0]  # Adjust if necessary
+    st.write(f'Updated Previous Status: {prev_status_result}')
