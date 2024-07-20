@@ -17,6 +17,24 @@ scaler = joblib.load(scaler_file_path)
 if 'previous_predictions' not in st.session_state:
     st.session_state.previous_predictions = pd.DataFrame(columns=['Week', 'Temperature', 'Humidity', 'GasLevel', 'Predicted Status'])
 
+# Custom CSS to set the background color
+st.markdown(
+    """
+    <style>
+    .main {
+        background-color: #d0f0c0;  /* Light green background */
+    }
+    .css-18e3th9 {
+        background-color: #006400;  /* Dark green for header */
+    }
+    .css-1j7a9z2 {
+        background-color: #00ff00;  /* Bright green for button */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 st.title("Environmental Monitoring Model:monitor:")
 
 st.write("Enter feature values for prediction:")
