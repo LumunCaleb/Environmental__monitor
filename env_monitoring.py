@@ -57,7 +57,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.title("Environmental Monitoring App")
+st.title("Environmental Monitoring Model :monitor:")
 
 st.write("Enter feature values for prediction:")
 
@@ -103,7 +103,17 @@ if st.button('Predict'):
     
     st.session_state.previous_predictions = pd.concat([st.session_state.previous_predictions, new_prediction], ignore_index=True)
 
-# Display previous predictions
-st.write("Previous Predictions")
-st.dataframe(st.session_state.previous_predictions)
+# Display previous predictions and the legend side by side
+col1, col2 = st.columns(2)
+
+with col1:
+    st.write("Previous Predictions")
+    st.dataframe(st.session_state.previous_predictions)
+
+with col2:
+    st.write("### Prediction Legend")
+    st.write("**U**: Unsafe")
+    st.write("**M**: Moderately safe")
+    st.write("**S**: Safe")
+
 
