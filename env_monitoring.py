@@ -22,15 +22,15 @@ st.markdown(
     """
     <style>
     .main {
-        background-color: #e8f5e9;  /* Classic light green background */
-        color: black;  /* Black text color */
+        background-color: #004d00;  /* Dark green background */
+        color: white;  /* White text color */
     }
     .css-18e3th9 { /* Header */
-        background-color: #c8e6c9;  /* Slightly darker green for header */
-        color: black;  /* Black text color */
+        background-color: #003300;  /* Darker green for header */
+        color: white;  /* White text color */
     }
     .css-1j7a9z2 { /* Button */
-        background-color: #4caf50;  /* Classic green for button */
+        background-color: #006400;  /* Dark green for button */
         color: white;  /* White text color on button */
     }
     .css-1n7v3w8 { /* Input fields */
@@ -106,3 +106,4 @@ if st.button('Predict'):
 # Display previous predictions
 st.write("Previous Predictions")
 st.dataframe(st.session_state.previous_predictions)
+
