@@ -64,5 +64,5 @@ if st.button('Predict'):
     st.session_state.previous_predictions = pd.concat([st.session_state.previous_predictions, new_prediction], ignore_index=True)
 
 # Display previous predictions
-st.write("Previous Predictions:")
+st.write("Previous Predictions")
 st.dataframe(st.session_state.previous_predictions)
