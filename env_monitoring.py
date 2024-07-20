@@ -53,13 +53,15 @@ if st.button('Predict'):
     st.write(f'Prediction: {predicted_status}')
     
     # Update 'Prev_Status' with the prediction result
-    st.session_state.previous_predictions = st.session_state.previous_predictions.append({
-        'Week': Week,
-        'Temperature': Temperature,
-        'Humidity': Humidity,
-        'GasLevel': GasLevel,
-        'Predicted Status': predicted_status
-    }, ignore_index=True)
+    new_prediction = pd.DataFrame({
+        'Week': [Week],
+        'Temperature': [Temperature],
+        'Humidity': [Humidity],
+        'GasLevel': [GasLevel],
+        'Predicted Status': [predicted_status]
+    })
+    
+    st.session_state.previous_predictions = pd.concat([st.session_state.previous_predictions, new_prediction], ignore_index=True)
 
 # Display previous predictions
 st.write("Previous Predictions:")
