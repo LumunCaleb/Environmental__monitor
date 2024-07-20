@@ -114,5 +114,5 @@ with col1:
     st.dataframe(st.session_state.previous_predictions)
 
 with col2:
-    st.write("### Prediction Legend")
+    st.write("Prediction Legend")
     st.write("**U**: Unsafe", "**M**: Moderately safe", "**S**: Safe")
