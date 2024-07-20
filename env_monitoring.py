@@ -57,7 +57,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.title("Environmental Monitoring Model:monitor:")
+st.title("Environmental Monitoring App")
 
 st.write("Enter feature values for prediction:")
 
