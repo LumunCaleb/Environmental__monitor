@@ -5,9 +5,9 @@ import joblib
 import matplotlib.pyplot as plt
 
 # Define the paths to your joblib files
-joblib_file_path = r'C:\Users\CALEB\knnmainnew_model.joblib'
-label_encoder_path = r'C:\Users\CALEB\encoder.joblib'
-scaler_path = r'C:\Users\CALEB\scaler.joblib'
+joblib_file_path = ''knnmainnew_model.joblib''
+label_encoder_path = 'encoder.joblib'
+scaler_path = 'scaler.joblib'
 
 # Load the model, label encoder, and scaler using joblib
 model = joblib.load(joblib_file_path)
