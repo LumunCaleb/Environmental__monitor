@@ -19,6 +19,8 @@ st.title("Environmental Monitoring Model :monitor:")
 # Initialize session state variables to track previous prediction
 if 'previous_prediction' not in st.session_state:
     st.session_state.previous_prediction = 'M'  # Default value or set to 'unknown'
+if 'previous_predictions' not in st.session_state:
+    st.session_state.previous_predictions = pd.DataFrame(columns=['Week', 'Temperature', 'Humidity', 'GasLevel', 'Predicted Status'])
 
 # Sidebar for navigation
 option = st.sidebar.selectbox(
@@ -64,6 +66,28 @@ if option == "Predict with User Input":
 
         # Update session state with the latest prediction
         st.session_state.previous_prediction = prediction
+
+        # Update previous predictions DataFrame
+        new_prediction = pd.DataFrame({
+            'Week': [Week],
+            'Temperature': [Temperature],
+            'Humidity': [Humidity],
+            'GasLevel': [GasLevel],
+            'Predicted Status': [prediction]
+        })
+        
+        st.session_state.previous_predictions = pd.concat([st.session_state.previous_predictions, new_prediction], ignore_index=True)
+
+        # Display previous predictions and the legend side by side
+        col1, col2 = st.columns([4, 2])
+
+        with col1:
+            st.write("**Previous Predictions**")
+            st.dataframe(st.session_state.previous_predictions)
+
+        with col2:
+            st.write("**Prediction Legend**")
+            st.write("**U**: Unsafe", "**M**: Moderately Safe", "**S**: Safe")
 
 elif option == "Update a CSV File":
     st.write("Upload a CSV file to update:")
@@ -143,7 +167,6 @@ elif option == "Update a CSV File":
 
                         # Update 'Prev. Status' with the latest prediction
                         prev_prediction = 'U'
-                        df['Prev. Status'] = prev_prediction
                         for i in range(len(df)):
                             df.at[i, 'Prev. Status'] = prev_prediction
                             prev_prediction = df.at[i, 'Prediction']
@@ -151,7 +174,6 @@ elif option == "Update a CSV File":
                         # Map prediction results to colors
                         color_map = {'S': 'green', 'M': 'orange', 'U': 'red'}
                         df['Color'] = df['Prediction'].map(color_map)
-
                         # Plot results
                         fig, ax = plt.subplots()
                         for label, color in color_map.items():
@@ -171,7 +193,6 @@ elif option == "Update a CSV File":
                         st.success(f'CSV file saved to {save_path}')
         except Exception as e:
             st.error(f"Error reading the CSV file: {e}")
-
 
 #WORKED
 # import streamlit as st
