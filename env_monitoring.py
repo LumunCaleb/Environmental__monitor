@@ -14,7 +14,7 @@ model = joblib.load(joblib_file_path)
 label_encoder = joblib.load(label_encoder_path)
 scaler = joblib.load(scaler_path)
 
-st.title("Environmental Monitoring Model :monitor:")
+st.title("Environmental Monitoring App")
 
 # Initialize session state variables to track previous prediction
 if 'previous_prediction' not in st.session_state:
@@ -187,12 +187,27 @@ elif option == "Update a CSV File":
 
                         st.pyplot(fig)
 
-                        # Save the CSV file locally (optional)
-                        #save_path = r'C:\Users\CALEB\uploaded_file.csv'
-                        #3df.to_csv(save_path, index=False)
-                        #st.success(f'CSV file saved to {save_path}')
-        except Exception as e:
-            st.error(f"Error reading the CSV file: {e}")
+                        df = pd.DataFrame({
+                        'Temperature': [25, 30, 35],
+                            'Humidity': [60, 65, 70],
+                        'Gas Level': [300, 320, 340],
+                        'Weeks of Poultry Birds': [2, 3, 4],
+                        'Predicted Status': ['M', 'U', 'S']
+                        })
+
+                        # Convert DataFrame to CSV
+                        csv = df.to_csv(index=False)
+                        
+                        # Create a download button
+                        st.download_button(
+                            label="Download Predictions as CSV",
+                            data=csv,
+                            file_name='predicted_results.csv',
+                            mime='text/csv',
+                            key='download-csv'
+                        )
+                                except Exception as e:
+                                    st.error(f"Error reading the CSV file: {e}")
 
 # import streamlit as st
 # import numpy as np
