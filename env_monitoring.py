@@ -187,16 +187,17 @@ elif option == "Update a CSV File":
 
                         st.pyplot(fig)
 
-                        df = pd.DataFrame({
-                        'Temperature': [25, 30, 35],
+                        # Prepare DataFrame to download
+                        download_df = pd.DataFrame({
+                            'Temperature': [25, 30, 35],
                             'Humidity': [60, 65, 70],
-                        'Gas Level': [300, 320, 340],
-                        'Weeks of Poultry Birds': [2, 3, 4],
-                        'Predicted Status': ['M', 'U', 'S']
+                            'Gas Level': [300, 320, 340],
+                            'Weeks of Poultry Birds': [2, 3, 4],
+                            'Predicted Status': ['M', 'U', 'S']
                         })
 
                         # Convert DataFrame to CSV
-                        csv = df.to_csv(index=False)
+                        csv = download_df.to_csv(index=False)
                         
                         # Create a download button
                         st.download_button(
@@ -206,8 +207,9 @@ elif option == "Update a CSV File":
                             mime='text/csv',
                             key='download-csv'
                         )
-                        except Exception as e:
-                             st.error(f"Error reading the CSV file: {e}")
+
+        except Exception as e:
+            st.error(f"Error reading the CSV file: {e}")
 
                        
 # import streamlit as st
