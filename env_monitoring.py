@@ -206,9 +206,10 @@ elif option == "Update a CSV File":
                             mime='text/csv',
                             key='download-csv'
                         )
-                                except Exception as e:
-                                    st.error(f"Error reading the CSV file: {e}")
+                        except Exception as e:
+                             st.error(f"Error reading the CSV file: {e}")
 
+                       
 # import streamlit as st
 # import numpy as np
 # import pandas as pd
