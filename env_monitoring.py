@@ -134,7 +134,7 @@ if option == "Predict with User Input":
             st.write("**Prediction Legend**")
             st.write("**U**: Unsafe", "**M**: Moderately Safe", "**S**: Safe")
 
-elif option == "Update a CSV File":
+elif option == "Upload a CSV File":
     st.write("Upload a CSV file to update:")
 
     # File uploader
