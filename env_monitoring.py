@@ -48,7 +48,7 @@ st.markdown(
         background-color: gray;  /* Gray background for text input fields */
     }
     .css-10trblm { /* Title */
-        color: white;  /* White text color for the title */
+        color: gray;  /* White text color for the title */
     }
     .watermark {
         position: fixed;
