@@ -22,6 +22,51 @@ if 'previous_prediction' not in st.session_state:
 if 'previous_predictions' not in st.session_state:
     st.session_state.previous_predictions = pd.DataFrame(columns=['Week', 'Temperature', 'Humidity', 'GasLevel', 'Predicted Status'])
 
+
+#Custom CSS to set the background color, text color, and add a watermark
+st.markdown(
+    """
+    <style>
+    .main {
+        background-color: #004d00;  /* Dark green background */
+        color: white;  /* White text color */
+    }
+    .css-18e3th9 { /* Header */
+        background-color: #003300;  /* Darker green for header */
+        color: white;  /* White text color */
+    }
+    .css-1j7a9z2 { /* Button */
+        background-color: #006400;  /* Dark green for button */
+        color: white;  /* White text color on button */
+    }
+    .css-1n7v3w8 input { /* Input fields */
+        color: white;  /* White text color in input fields */
+        background-color: gray;  /* Gray background for input fields */
+    }
+    .css-1v3h5q2 { /* Text Input */
+        color: white;  /* White text color in text input fields */
+        background-color: gray;  /* Gray background for text input fields */
+    }
+    .css-10trblm { /* Title */
+        color: white;  /* White text color for the title */
+    }
+    .watermark {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        opacity: 0.5;
+        z-index: -1;
+        pointer-events: none;
+    }
+    </style>
+    <div class="watermark">
+        <img src="https://example.com/path-to-your-watermark-image.png" alt="Poultry Farm" width="200"/>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+
 # Sidebar for navigation
 option = st.sidebar.selectbox(
     "Choose an option",
