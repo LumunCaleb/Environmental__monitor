@@ -70,7 +70,7 @@ st.markdown(
 # Sidebar for navigation
 option = st.sidebar.selectbox(
     "Choose an option",
-    ("Predict with User Input", "Update a CSV File")
+    ("Predict with User Input", "Upload a CSV File")
 )
 
 if option == "Predict with User Input":
