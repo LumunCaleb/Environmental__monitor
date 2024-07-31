@@ -67,6 +67,29 @@ if option == "Predict with User Input":
         # Update session state with the latest prediction
         st.session_state.previous_prediction = prediction
 
+
+        # Update previous predictions DataFrame
+        new_prediction = pd.DataFrame({
+            'Week': [Week],
+            'Temperature': [Temperature],
+            'Humidity': [Humidity],
+            'GasLevel': [GasLevel],
+            'Predicted Status': [prediction]
+        })
+        
+        st.session_state.previous_predictions = pd.concat([st.session_state.previous_predictions, new_prediction], ignore_index=True)
+
+        # Display previous predictions and the legend side by side
+        col1, col2 = st.columns([4, 2])
+
+        with col1:
+            st.write("**Previous Predictions**")
+            st.dataframe(st.session_state.previous_predictions)
+
+        with col2:
+            st.write("**Prediction Legend**")
+            st.write("**U**: Unsafe", "**M**: Moderately Safe", "**S**: Safe")
+
 elif option == "Upload a CSV File":
     st.write("Upload a CSV file to update:")
 
