@@ -543,7 +543,7 @@ elif option == "Upload a CSV File":
                             key='download-csv'
                         )
 
-#         except Exception as e:
-#             st.error(f"Error reading the CSV file: {e}")
+        except Exception as e:
+            st.error(f"Error reading the CSV file: {e}")
 
                        
