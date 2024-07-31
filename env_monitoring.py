@@ -218,7 +218,7 @@ elif option == "Real-Time Prediction":
 
     # Google Sheets API setup
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-    creds = ServiceAccountCredentials.from_json_keyfile_name(iot-project-records-b10cc95366a6.json, scope)
+    creds = ServiceAccountCredentials.from_json_keyfile_name('GOOGLE_APPLICATION_CREDENTIALS', scope)
     client = gspread.authorize(creds)
 
     # Open the Google Sheet by URL
