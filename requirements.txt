@@ -4,3 +4,5 @@ scikit-learn==1.2.2
 pandas
 joblib
 matplotlib
+gspread
+oauth2client
