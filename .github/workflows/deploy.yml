@@ -30,4 +30,4 @@ jobs:
 
     - name: Run Streamlit
       run: |
-        streamlit run envmonitoring.py  # Adjust to your main Streamlit script
+        streamlit run env_monitoring.py  # Adjust to your main Streamlit script
