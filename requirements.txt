@@ -6,3 +6,4 @@ joblib
 matplotlib
 gspread
 oauth2client
+setuptools>=60.0
