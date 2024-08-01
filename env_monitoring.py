@@ -217,14 +217,13 @@ elif option == "Upload a CSV File":
 if option == "Real-Time Prediction":
     st.write("Real-Time Prediction from Google Sheets:")
 
-      # Google Sheets API setup
+    # Google Sheets API setup
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-
+    
     # Load credentials from the secrets
     creds_dict = json.loads(st.secrets["GOOGLE_APPLICATION_CREDENTIALS"])
     creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
     client = gspread.authorize(creds)
-
 
     # Open the Google Sheet by URL
     sheet_url = 'https://docs.google.com/spreadsheets/d/1lbGCOmPlX4HXzNW2WDfocolRO6E28uFGTNeeH_yBIbo/edit#gid=0'
@@ -288,6 +287,7 @@ if option == "Real-Time Prediction":
     while True:
         fetch_and_predict()
         time.sleep(60)
+
 
 
 
