@@ -3,7 +3,7 @@ name: Streamlit Deploy
 on:
   push:
     branches:
-      - main  # Change this to your deployment branch if different
+      - master  # Change this to your deployment branch if different
 
 jobs:
   deploy:
@@ -25,9 +25,9 @@ jobs:
 
     - name: Set up Google Cloud credentials
       run: |
-        echo "${{ secrets.GOOGLE_CLOUD_API_KEY }}" > google-cloud-api-key.json
+        echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}" > google-cloud-api-key.json
         export GOOGLE_APPLICATION_CREDENTIALS=$GITHUB_WORKSPACE/google-cloud-api-key.json
 
     - name: Run Streamlit
       run: |
-        streamlit run app.py  # Adjust to your main Streamlit script
+        streamlit run envmonitoring.py  # Adjust to your main Streamlit script
