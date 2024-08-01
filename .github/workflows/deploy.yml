@@ -3,31 +3,27 @@ name: Streamlit Deploy
 on:
   push:
     branches:
-      - master  # Change this to your deployment branch if different
+      - master  # Change this if you have a different deployment branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'  # Specify the Python version
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.12.4   
+  # Specify the exact version if needed
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-    - name: Set up Google Cloud credentials
-      run: |
-        echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}" > google-cloud-api-key.json
-        export GOOGLE_APPLICATION_CREDENTIALS=$GITHUB_WORKSPACE/google-cloud-api-key.json
-
-    - name: Run Streamlit
-      run: |
-        streamlit run env_monitoring.py  # Adjust to your main Streamlit script
+      - name: Run Streamlit
+        run: |
+          streamlit run env_monitoring.py
