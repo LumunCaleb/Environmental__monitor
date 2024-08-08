@@ -214,6 +214,8 @@ elif option == "Upload a CSV File":
         except Exception as e:
             st.error(f"Error reading the CSV file: {e}")
 
+
+
 if option == "Real-Time Prediction":
     st.write("Real-Time Prediction from Google Sheets:")
 
@@ -221,8 +223,7 @@ if option == "Real-Time Prediction":
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
     
     # Load credentials from the secrets
-    creds_dict = json.loads(st.secrets["GOOGLE_APPLICATION_CREDENTIALS"])
-    creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(st.secrets["google_api"], scope)
     client = gspread.authorize(creds)
 
     # Open the Google Sheet by URL
